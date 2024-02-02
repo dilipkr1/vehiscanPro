@@ -1,0 +1,10 @@
+.giveSpace {
+  letter-spacing: 0px;
+}
+
+@media (min-width: 200px) and (max-width: 640px) {
+  .customMobflexCol {
+    display: flex;
+    flex-direction: column;
+  }
+}
