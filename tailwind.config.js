@@ -54,7 +54,11 @@ module.exports = {
       'pricingcard':"#eef1f6",
       'color8':'#74c0fc',
       'color9':'#effaf3',
-      'red':'#f8452d'
+      'red':'#f8452d',
+      'shopbgcolor':'#007bff',
+      'bgnavclr':'#446bb9',
+      'inputbgclr':'#f5f5f7',
+      'logoClr':'#f68712'
  
     }
   },

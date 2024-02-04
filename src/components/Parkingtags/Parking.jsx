@@ -5,7 +5,7 @@ export default function Parking() {
 
   function clickHandler() {}
   return (
-    <div>
+    <div className="py-10">
       <div className="lg:flex lg:flex-row lg:justify-between lg:items-center  customMobflexCol  justify-center items-center  gap-6 mb-10 mx-5 lg:gap-2  md:px-20 md:py-7">
         <div className="lg:flex-col ">
           <div className="parkingtags flex justify-center items-center gap-3 ">

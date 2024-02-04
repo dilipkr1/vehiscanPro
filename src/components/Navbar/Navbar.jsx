@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./nav.css";
+import Login from "../Login/Login";
 
 export default function Navbar() {
   return (
@@ -14,22 +16,28 @@ export default function Navbar() {
 
       <ul className="customNavResponsive flex w-2/3 lg:justify-center font-roboto text-main-500 leading-10 items-center gap-6 ">
         <li>
-          <a href="#">Home</a>
+          <Link to="/">Home</Link>
+          {/* <a href="#">Home</a> */}
         </li>
         <li>
-          <a href="#">Shop</a>
+          {/* <a href="#">Shop</a> */}
+          <Link to="/shop">Shop</Link>
         </li>
         <li>
-          <a href="#">News</a>
+          {/* <a href="#">News</a> */}
+          <Link to="/news">News</Link>
         </li>
         <li>
-          <a href="#">Contact</a>
+          {/* <a href="#">Contact</a> */}
+          <Link to="/contact">Contact</Link>
         </li>
       </ul>
 
       <div className="navRight flex lg:justify-center justify-end lg:mr-10  items-center w-full gap-3">
-        <i className="fa-solid fa-user px-1 faSize"></i>
-        <span className="faSize font-roboto text-main-700">Login</span>
+      <Link to="/nopage"><i className="fa-solid fa-user px-1 faSize"></i></Link>
+        <span className="faSize font-roboto text-main-700">
+          <Link to="/login" >Login</Link>
+        </span>
         <i className="lg:hidden fa-solid fa-bars faSize"></i>
       </div>
     </div>

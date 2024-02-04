@@ -40,7 +40,7 @@ export default function (props) {
               </li>
             </ul>
           </div>
-          <div className="my-4 w-40 text-black bg-white hover:bg-red hover:text-white font-medium rounded-lg text-sm px-3 py-4 text-center me-2 mb-2">
+          <div className="my-4 w-40 text-black bg-white hover:bg-red hover:text-white border  font-medium rounded-lg text-sm px-3 py-4 text-center me-2 mb-2">
             <a href="#">Know More</a>
           </div>
         </div>
