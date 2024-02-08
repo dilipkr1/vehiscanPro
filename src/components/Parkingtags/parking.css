@@ -8,3 +8,15 @@
     flex-direction: column;
   }
 }
+
+
+/* custom-alignLeft */
+
+/* 
+@media (min-width: 1024) and (max-width: 1300) {
+  .custom-alignLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
+} */

@@ -4,7 +4,7 @@ import Home from "./components/Home/Home";
 import Workdetails from "./components/Howworks/Workdetails";
 import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
-import Parking from "./components/Parkingtags/Parking";
+import Parking from "./components/Parkingtags/ParkingTag";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Shop from "./components/Shop/Shop";
 import Contact from "./components/Contact/Contact";
@@ -13,6 +13,7 @@ import Nopage from "./components/Nopage/Nopage";
 import Contactus from "./components/Usercontact/Contactus";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
+import Navmob from "./components/Navmob/Navmob";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
               }
             />
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/Signup" element={<Signup />} />
             <Route path="shop" element={<Shop />} />
             <Route path="contact" element={<Contactus />} />
             <Route path="news" element={<News />} />

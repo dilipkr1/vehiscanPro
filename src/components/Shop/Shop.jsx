@@ -1,7 +1,7 @@
 import React from "react";
 import "./shop.css"
 import Shoppingcard from "../Shopdata/Shoppingcard";
-import shoppingData from "./Shopdata";
+import shoppingData from "../Shopdata/Shopdata";
 
 export default function Shop() {
   return (

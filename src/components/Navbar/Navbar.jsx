@@ -34,9 +34,11 @@ export default function Navbar() {
       </ul>
 
       <div className="navRight flex lg:justify-center justify-end lg:mr-10  items-center w-full gap-3">
-      <Link to="/nopage"><i className="fa-solid fa-user px-1 faSize"></i></Link>
+        <Link to="/nopage">
+          <i className="fa-solid fa-user px-1 faSize"></i>
+        </Link>
         <span className="faSize font-roboto text-main-700">
-          <Link to="/login" >Login</Link>
+          <Link to="/login">Login</Link>
         </span>
         <i className="lg:hidden fa-solid fa-bars faSize"></i>
       </div>

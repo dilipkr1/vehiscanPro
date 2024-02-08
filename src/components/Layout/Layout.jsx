@@ -5,7 +5,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Workdetails from "../Howworks/Workdetails";
 import Bestsellingpro from "../Bestproduct/Bestsellingpro";
-import Parking from "../Parkingtags/Parking";
+import Parking from "../Parkingtags/ParkingTag";
 
 function Layout() {
   return (
