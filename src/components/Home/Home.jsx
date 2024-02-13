@@ -18,7 +18,7 @@ export default function Home() {
         <span className="lg:text-left customTextalign text-black-500">
           NGF132 - Now Get Found.
         </span>
-        <h1 className="giveSpace customTextalign mt-2.5 mx-0 mb-5 lg:text-3xl  text-4xl font-roboto tracking-tight text-main-800 lg:text-left  leading-7.2 ">
+        <h1 className="giveSpace customTextalign mt-2.5 mx-0 mb-5 lg:text-3xl  text-4xl font-roboto tracking-wide font-bold text-main font-700  lg:text-left  leading-7.2 ">
           Let people contact you in case of any issue with your parked vehicle
         </h1>
         <p className="giveSpace text-pgcolor customTextalign lg:text-left sm:text-base leading-30">

@@ -1,0 +1,47 @@
+.dsidebar {
+  height: 100vh;
+  overflow: hidden;
+  flex: 1.2;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  /* margin-right: 20px; */
+ 
+} 
+.vehilogoSize { 
+  border-radius: 0;
+  height: 70px;
+  width: 190px;
+
+}
+
+
+ 
+ 
+.titleNav {
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding: 5px;
+} 
+
+.dashList {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+} 
+.iconSideBar {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.sideBarSpan {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222222;
+  margin-left: 10px;
+}
+
+ 
+ 
