@@ -4,10 +4,11 @@ import { CustomerContext } from "../../context/customrContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Edit() {
-    const naviagte = useNavigate()
+  const naviagte = useNavigate();
   const { customerData, setCustomerData } = useContext(CustomerContext);
   const [customer, setCustomer] = useState(null);
   const { customerid } = useParams();
+  console.log(customerData)
 
   useEffect(() => {
     const foundCustomer = Object.values(customerData)
@@ -19,35 +20,30 @@ export default function Edit() {
     }
   }, [customerData, customerid]);
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(customer),
     };
-  
+
     try {
       const response = await fetch(
         "http://localhost:8000/api/customer/update/" + customerid,
         requestOptions
       );
-  
+
       if (!response.ok) {
-        throw new Error('Failed to update customer data');
+        throw new Error("Failed to update customer data");
       }
 
-      naviagte('/dashboard/customers')
-  
-     
+      naviagte("/dashboard/customers");
     } catch (error) {
-      console.error('Error updating customer data:', error.message);
-      // Handle error: show error message, display an alert, etc.
+      console.error("Error updating customer data:", error.message);
     }
   };
-  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -60,7 +56,7 @@ export default function Edit() {
   const customerEmail = customer?.customerEmail || "";
   const customerPhone = customer?.customerPhone || "";
   const customerAddress = customer?.customerAddress || "";
- 
+
   return (
     <div>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
@@ -71,7 +67,8 @@ export default function Edit() {
           >
             Customer Name
           </label>
-          <input required
+          <input
+            required
             type="text"
             id="customerName"
             name="customerName"
@@ -86,7 +83,7 @@ export default function Edit() {
             Email
           </label>
           <input
-          required
+            required
             type="email"
             id="customerEmail"
             name="customerEmail"
@@ -101,7 +98,7 @@ export default function Edit() {
             Phone
           </label>
           <input
-          required
+            required
             type="Number"
             id="customerPhone"
             name="customerPhone"

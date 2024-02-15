@@ -6,10 +6,8 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreIcon from "@mui/icons-material/Store";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
+ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+ import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
@@ -17,10 +15,10 @@ import vehicleanImage from "../../images/hz_vehiclean.png";
 
 const Sidebar = () => {
   return (
-    <div className="dsidebar  min-h-full bg-logoClr">
+    <div className="dsidebar  min-h-full bg-logoClr    ">
       <div className=" flex justify-center items-center bg-contain">
         <Link to="/dashboard" style={{ textDecoration: "none" }}>
-          <div className="d-16 fles items-center justify-center">
+          <div className="items-center justify-center  ">
             <img className="vehilogoSize" src={vehicleanImage} alt="Images" />
           </div>
         </Link>
@@ -71,10 +69,12 @@ const Sidebar = () => {
           </Link>
 
           <p className="titleNav">SETTING</p>
+          <Link to="/dashboard/customers/global"> 
           <li className="dashList">
             <SettingsSystemDaydreamOutlinedIcon className="iconSideBar" />
-            <span className="sideBarSpan">Global</span>
+            <span className="sideBarSpan">Settings</span>
           </li>
+          </Link>
           <li className="dashList">
             <PsychologyOutlinedIcon className="iconSideBar" />
             <span className="sideBarSpan">Third Party</span>

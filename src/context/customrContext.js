@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from 'react';
 const CustomerContext = createContext();
 
 const CustomerProvider = ({ children }) => {
-  const [customerData, setCustomerData] = useState(); 
+  const [customerData, setCustomerData] = useState();
   useEffect(() => {
     fetchCustomerData().then(data => {
       setCustomerData(data);
@@ -20,7 +20,7 @@ const CustomerProvider = ({ children }) => {
   };
 
   return (
-    <CustomerContext.Provider value={{customerData, setCustomerData}}>
+    <CustomerContext.Provider value={{ customerData, setCustomerData }}>
       {children}
     </CustomerContext.Provider>
   );

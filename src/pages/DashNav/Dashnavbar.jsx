@@ -9,14 +9,7 @@ const Dashnavbar = () => {
   return (
     <div className="bg-logoClr dashNav flex items-center text-sm font-normal  overflow-hidden border-none">
       <div className="wrapper w-full p-0 flex items-center justify-end">
-        {/* <div className="search flex items-center p-1">
-          <input
-            className="border-none outline-none text-lg"
-            type="text"
-            placeholder="Search..."
-          />
-          <SearchOutlinedIcon />
-        </div> */}
+         
         <div className="items flex items-center">
           <div className="item flex items-center mr-5 relative  ">
             <NotificationsNoneOutlinedIcon className="icon iconClr" />

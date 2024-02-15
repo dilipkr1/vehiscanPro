@@ -8,8 +8,7 @@ import { CustomerContext } from "../../context/customrContext";
 
 const Datatable = () => {
   const { customerData, setCustomerData } = useContext(CustomerContext);
-  // const { setCustomerData } = useContext(CustomerContext);
-  // const [customerData, setCustomerData] = useState();
+   
 
   if (!customerData || customerData.length === 0) {
     return <div>Loading...</div>;
@@ -71,7 +70,7 @@ const Datatable = () => {
   return (
     <div className="datatable font-serif text-sm">
       <div className="datatableTitle">
-        <h2 className="text-xl font-serif font-black tracking-wider leading-10  text-main"> Customer List</h2>
+        <h2 className="text-xl    tracking-wider leading-10 font-extraligh text-main"> Customer List</h2>
         <Link to="/dashboard/customers/new" className="link">
           <AddCircleSharpIcon className="AddCircleSize"/>
         </Link>

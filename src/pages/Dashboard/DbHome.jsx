@@ -14,14 +14,7 @@ const DbHome = () => {
       <Sidebar />
       <div className="homeContainer">
         <Dashnavbar />
-
-        
-        {/* <div className="widgets">
-          <Widget type="user" />
-          <Widget type="order" />
-          <Widget type="earning" />
-          <Widget type="balance" />
-        </div> */}
+ 
         <div className="charts flex justify-center items-center text-8xl font-black text-pretty">
         <h1>Hello From  Dashboard  </h1>
           {/* <Featured />

@@ -1,7 +1,7 @@
 // components/Signup.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 // import { useHistory } from "react-router-dom";
 
@@ -30,7 +30,8 @@ function Signup() {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        naviagte('/login')
+        
+        naviagte("/login");
       } else {
         const errorData = await response.json();
         setError(

@@ -2,20 +2,18 @@
   height: 100vh;
   overflow: hidden;
   flex: 1.2;
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-  /* margin-right: 20px; */
- 
-} 
-.vehilogoSize { 
-  border-radius: 0;
-  height: 70px;
-  width: 190px;
-
+  padding-bottom: 20px;
+  border-right: 2rem;
+  border-right: 5px solid rgb(246, 149, 2);
+  box-shadow: 0 20px 0 rgb(246, 149, 2);
 }
 
+.vehilogoSize {
+  border-radius: 0;
+  height: 75px;
+  width: 190px;
+}
 
- 
- 
 .titleNav {
   font-size: 12px;
   font-weight: bold;
@@ -23,14 +21,15 @@
   margin-top: 15px;
   margin-bottom: 5px;
   padding: 5px;
-} 
+}
 
 .dashList {
   display: flex;
   align-items: center;
   padding: 5px;
   cursor: pointer;
-} 
+}
+
 .iconSideBar {
   font-size: 18px;
   color: #ffffff;
@@ -42,6 +41,3 @@
   color: #222222;
   margin-left: 10px;
 }
-
- 
- 

@@ -16,6 +16,11 @@ import Single from "./pages/Single/Single";
 import { customerInput } from "./formsource";
 import DbHome from "./pages/Dashboard/DbHome";
 import Edit from "./pages/Edit/Edit";
+import Packages from "./pages/Pakages/Packages";
+import Global from "./pages/Global/Global"
+import Wallet from "./pages/Wallet/Wallet";
+import Message from "./pages/Message/Messge";
+import Submail from "./pages/Submail/Submail";
 
 function App() {
   return (
@@ -28,19 +33,18 @@ function App() {
               <Route index element={<Customers />} />
               <Route path=":customerid">
                 <Route index element={<Single />} />
-                <Route path="edit" element={<Edit />} /> 
+                <Route path="edit" element={<Edit />} />
               </Route>
 
               <Route
                 path="/dashboard/customers/new"
                 element={<New inputs={customerInput} title="Add New Customer" />}
               />
-              <Route path="/dashboard/customers/messages" element={<Nopage />} />
-              <Route path="/dashboard/customers/wallet" element={<Nopage />} />
-              <Route path="/dashboard/customers/sub-mails" element={<Nopage />} />
-              <Route path="/dashboard/customers/packages" element={<Nopage />} />
-              <Route path="/dashboard/customers/ss" element={<Nopage />} />
-
+              <Route path="/dashboard/customers/messages" element={<Message />} />
+              <Route path="/dashboard/customers/wallet" element={<Wallet />} />
+              <Route path="/dashboard/customers/packages" element={<Packages />} />
+              <Route path="/dashboard/customers/global" element={<Global />} />
+              <Route path="/dashboard/customers/sub-mails" element={<Submail />} />
             </Route>
           </Route>
 
