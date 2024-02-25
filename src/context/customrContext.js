@@ -10,8 +10,7 @@ const CustomerProvider = ({ children }) => {
 
     });
   }, []);
-
-
+ 
   const fetchCustomerData = async () => {
     const response = await fetch('http://localhost:8000/api/customer/details');
     const data = await response.json();

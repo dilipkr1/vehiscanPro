@@ -30,7 +30,6 @@ function Signup() {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        
         naviagte("/login");
       } else {
         const errorData = await response.json();
@@ -60,6 +59,7 @@ function Signup() {
                   Your username
                 </label>
                 <input
+                  autoComplete="off"
                   type="text"
                   name="username"
                   value={formData.username}
@@ -77,6 +77,7 @@ function Signup() {
                   Your email
                 </label>
                 <input
+                  autoComplete="off"
                   type="email"
                   name="email"
                   value={formData.email}

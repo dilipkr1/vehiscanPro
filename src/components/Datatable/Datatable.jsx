@@ -3,13 +3,14 @@ import { DataGrid } from "@mui/x-data-grid";
 import { userColumns } from "../../dataTableSource";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import AddCircleSharpIcon from '@mui/icons-material/AddCircleSharp';
+import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
 import { CustomerContext } from "../../context/customrContext";
-
+import PreviewIcon from "@mui/icons-material/Preview";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
 const Datatable = () => {
   const { customerData, setCustomerData } = useContext(CustomerContext);
-   
-
   if (!customerData || customerData.length === 0) {
     return <div>Loading...</div>;
   }
@@ -37,7 +38,6 @@ const Datatable = () => {
     const filterData = customerData.filter((item) => item._id !== id);
     setCustomerData(filterData);
   }
-
   const actionColumn = [
     {
       field: "action",
@@ -47,19 +47,25 @@ const Datatable = () => {
         return (
           <div className="cellAction">
             <Link to={`${params.row._id}`} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+              <div className="viewButton">
+                <PreviewIcon style={{ color: "orange" }} />
+              </div>
             </Link>
             <Link
               to={`/dashboard/customers/${params.row._id}/edit`}
               style={{ textDecoration: "none" }}
             >
-              <div className="updateButton">Update</div>
+              <div className="updateButton">
+                <EditIcon />
+              </div>
             </Link>
             <div
               className="deleteButton"
               onClick={() => deleteCustomer(params.row._id)}
             >
-              Delete
+              <IconButton aria-label="delete" size="large">
+                <DeleteIcon style={{ color: "#d11a2a" }} fontSize="inherit" />
+              </IconButton>
             </div>
           </div>
         );
@@ -70,9 +76,12 @@ const Datatable = () => {
   return (
     <div className="datatable font-serif text-sm">
       <div className="datatableTitle">
-        <h2 className="text-xl    tracking-wider leading-10 font-extraligh text-main"> Customer List</h2>
+        <h2 className="text-xl    tracking-wider leading-10 font-extraligh text-main">
+          {" "}
+          Customer List
+        </h2>
         <Link to="/dashboard/customers/new" className="link">
-          <AddCircleSharpIcon className="AddCircleSize"/>
+          <AddCircleSharpIcon className="AddCircleSize" />
         </Link>
       </div>
       <DataGrid

@@ -1,80 +1,87 @@
 import "./single.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import Navbar from "../DashNav/Dashnavbar";
 import { useContext } from "react";
 import { CustomerContext } from "../../context/customrContext";
 import { useParams } from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
+import Dashnavbar from "../DashNav/Dashnavbar";
+import Dashcopy from "../Dashcopy/Dashcopy";
 
 const Single = () => {
   const customerData = useContext(CustomerContext);
   const { customerid } = useParams();
-  // console.log(customerData);
-
+ 
   if (!customerData || customerData.length === 0) {
     return <div>Loading...</div>;
   }
 
-
   function getCustomer(customerData, customerId) {
     for (let key in customerData) {
       const customersArray = customerData[key];
-      for (let i = 0; i < customersArray.length; i++) {
-        const customer = customersArray[i];
-        if (customer._id === customerId) {
-          console.log("Customer found:", customer);
-          return customer;
+
+      if (Array.isArray(customersArray)) {
+        for (let i = 0; i < customersArray.length; i++) {
+          const customer = customersArray[i];
+
+          if (customer._id === customerId) {
+             return customer;
+          }
         }
       }
     }
-    console.log("Customer not found");
-    return null;
   }
 
-  const customerDetails = getCustomer(customerData, customerid);
+  const customerDetails = customerData ? getCustomer(customerData, customerid): null
 
- 
+  if(!customerDetails){
+    return <p>Loading</p>
+  } else{
+    console.log(customerDetails)
+  }
   return (
-    <div class="mt-20 ml-20 bg-white overflow-hidden shadow rounded-lg border-none lg:w-1/3">
-      <div class="px-4 py-5 sm:px-6">
-        <h3 class="text-lg leading-6 font-medium text-gray-900 relative">
-          Customer Profile
-        </h3>
-        <p class="mt-1 max-w-2xl text-sm text-gray-500">
-          This is some information about the Customer.
-        </p>
-      </div>
-      <div class="px-4 py-5 sm:p-0 ">
-        <div className="editButton">Edit</div>
-        <dl class="sm:divide-y  sm:divide-gray-200">
-          <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-lg font-medium text-main font-roboto">Full name</dt>
-            <dd class="mt-1  ml-4 text-main font-normal  sm:mt-0 sm:col-span-2">
-              {customerDetails.customerName}
-            </dd>
-          </div>
-          <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-lg font-medium text-main font-roboto">
-              Email address
-            </dt>
-            <dd class="mt-1  ml-4 text-main font-normal  sm:mt-0 sm:col-span-2">
-              {customerDetails.customerEmail}
-            </dd>
-          </div>
-          <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-lg font-medium text-main font-roboto">
-              Phone number
-            </dt>
-            <dd class="mt-1  ml-4 text-main font-normal  sm:mt-0 sm:col-span-2">
-              {customerDetails.customerPhone}
-            </dd>
-          </div>
-          <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-lg font-medium text-main font-roboto">Address</dt>
-            <dd class="mt-1  ml-4 text-main font-normal  sm:mt-0 sm:col-span-2">
-              {customerDetails.customerAddress}
-            </dd>
-          </div>
-        </dl>
+    <div className="new">
+      <Sidebar />
+      <div className="newContainer">
+        <Dashnavbar />
+        <div className="ml-20 p-20 justify-start">
+          <Card sx={{ maxWidth: 345 }}>
+            <CardContent className="">
+              <Typography
+                className="ml-5"
+                gutterBottom
+                variant="h5"
+                component="div"
+              >
+                <Avatar src="/broken-image.jpg" />
+              </Typography>
+              <Typography gutterBottom variant="h5" component="div">
+                Name : {customerDetails.customerName}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Email: {customerDetails.customerEmail}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Phone: {customerDetails.customerPhone}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Address: {customerDetails.customerAddress}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small">Share</Button>
+              <Button size="small">Learn More</Button>
+            </CardActions>
+          </Card>
+        </div>
+
+        <div className="flex justify-center  pb-2 mr-10 absolute bottom-0 right-10">
+          <Dashcopy />
+        </div>
       </div>
     </div>
   );

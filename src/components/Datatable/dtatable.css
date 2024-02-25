@@ -3,12 +3,12 @@
   padding: 20px;
 }
 
-.AddCircleSize{
+.AddCircleSize {
   font-size: 2rem;
 }
 
 .datatableTitle {
-  width: 100%; 
+  width: 100%;
   color: gray;
   margin-bottom: 10px;
   display: flex;
@@ -18,9 +18,9 @@
 
 .link {
   text-decoration: none;
-  border:1px solid orange;
-  color: orange; 
-  font-weight: 400; 
+  font-size: 40px;
+  color: orange;
+  font-weight: 400;
   padding: 8px;
   border-radius: 5px;
   cursor: pointer;
@@ -81,7 +81,7 @@
   cursor: pointer;
 }
 
-.updateButton{
+.updateButton {
   padding: 2px 5px;
   border-radius: 5px;
   color: forestgreen;

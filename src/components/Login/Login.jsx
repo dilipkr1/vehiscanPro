@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import customerprofile from "../Profile/Profile";
+import { useCustomer } from "../../context/userContext";
 
 function Login() {
+  const { setCustomer } = useCustomer();
   const navigate = useNavigate();
-  const [userDetails, setUserDetails] = useState(null);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,34 +16,35 @@ function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+ 
+ 
+  // useEffect(() => {
+  //   const fetchUserDetails = async () => {
+  //     try {
+  //       const token = sessionStorage.getItem("token");
+  //       const customer = sessionStorage.getItem("customer");
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const token = sessionStorage.getItem("token");
-        if (token) {
-          navigate("/dashboard");
-          const response = await fetch(
-            "http://localhost:8000/api/customer/details",
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          if (response.ok) {
-            const userData = await response.json();
-            setUserDetails(userData);
-            console.log(userData)
-          }
-        }
-      } catch (error) {
-        console.error("Fetch User Details Error:", error);
-      }
-    };
+  //       if (token) {
+  //         navigate("/dashboard");
+  //         const response = await fetch(
+  //           "http://localhost:8000/api/customer/details",
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${token}`,
+  //             },
+  //           }
+  //         );
+  //         if (response.ok) {
+            
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Fetch User Details Error:", error);
+  //     }
+  //   };
 
-    fetchUserDetails();
-  }, [navigate]);
+  //   fetchUserDetails();
+  // }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,6 +70,7 @@ function Login() {
       setError("Network error. Please check your internet connection.");
     }
   };
+
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900 mt-20">

@@ -2,27 +2,31 @@ import { useParams } from "react-router-dom";
 import React, { useContext, useState, useEffect } from "react";
 import { CustomerContext } from "../../context/customrContext";
 import { useNavigate } from "react-router-dom";
+import Dashcopy from "../Dashcopy/Dashcopy";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Dashnavbar from "../DashNav/Dashnavbar";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function Edit() {
   const naviagte = useNavigate();
-  const { customerData, setCustomerData } = useContext(CustomerContext);
-  const [customer, setCustomer] = useState(null);
+  const { customerData } = useContext(CustomerContext);
+  const [customer, setCustomer] = useState({});
   const { customerid } = useParams();
-  console.log(customerData)
+
 
   useEffect(() => {
-    const foundCustomer = Object.values(customerData)
-      .flat()
-      .find((customer) => customer._id === customerid);
-
-    if (foundCustomer) {
-      setCustomer(foundCustomer);
+    if (customerData && customerData.length > 0) {
+      const foundCustomer = Object.values(customerData)
+        .flat()
+        .find((customer) => customer._id === customerid);
+      if (foundCustomer) {
+        setCustomer(foundCustomer);
+      }
     }
   }, [customerData, customerid]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -52,88 +56,105 @@ export default function Edit() {
       [name]: value,
     }));
   };
+
   const customerName = customer?.customerName || "";
   const customerEmail = customer?.customerEmail || "";
   const customerPhone = customer?.customerPhone || "";
   const customerAddress = customer?.customerAddress || "";
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
-        <div className="mb-4">
-          <label
-            htmlFor="customerName"
-            className="block text-gray-700 font-bold mb-2"
-          >
-            Customer Name
-          </label>
-          <input
-            required
-            type="text"
-            id="customerName"
-            name="customerName"
-            value={customerName}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter customer name"
-          />
+    <div className="new">
+      <Sidebar />
+      <div className="newContainer">
+        <Dashnavbar />
+        <div className="p-0 ml-5">
+          <h1 className="text-2xl font-roboto tracking-wide">
+            <EditIcon /> Update Details
+          </h1>
         </div>
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
-            Email
-          </label>
-          <input
-            required
-            type="email"
-            id="customerEmail"
-            name="customerEmail"
-            value={customerEmail}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter email"
-          />
+
+        <div className="bottom">
+          <div className="right">
+            <div className="container w-full">
+              <form onSubmit={handleSubmit} className="ml-5 mt-8  p-10 rounded">
+                <div className="flex flex-wrap gap-0 w-full">
+                  <div className=" lg:w-1/2 flex flex-col">
+                    <label className="mb-2 text-lg" htmlFor="name">
+                      Full Name
+                    </label>
+                    <input
+                      onChange={handleChange}
+                      id="customerName"
+                      name="customerName"
+                      value={customerName}
+                      className="w-90 rounded formInput mr-10"
+                      type="text"
+                      placeholder="Full Name"
+                    />
+                  </div>
+                  <div className="lg:w-1/2 flex flex-col">
+                    <label className="mb-2 text-lg" htmlFor="email">
+                      Email
+                    </label>
+                    <input
+                      className="w-90 rounded formInput mr-10"
+                      type="email"
+                      placeholder="Email  "
+                      onChange={handleChange}
+                      id="customerEmail"
+                      name="customerEmail"
+                      value={customerEmail}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-0 w-full mt-3">
+                  <div className=" lg:w-1/2 flex flex-col">
+                    <label className="mb-2 text-lg" htmlFor="Phone">
+                      Phone
+                    </label>
+                    <input
+                      required
+                      className="w-90 rounded formInput mr-10"
+                      type="Number"
+                      placeholder="Mobile Number"
+                      onChange={handleChange}
+                      id="customerPhone"
+                      name="customerPhone"
+                      value={customerPhone}
+                    />
+                  </div>
+                  <div className="lg:w-1/2 flex flex-col">
+                    <label className="mb-2 text-lg" htmlFor="email">
+                      Address
+                    </label>
+                    <input
+                      required
+                      className="w-90 rounded formInput mr-10"
+                      type="address"
+                      placeholder="Address"
+                      onChange={handleChange}
+                      id="customerAddress"
+                      name="customerAddress"
+                      value={customerAddress}
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-end mt-10 ">
+                  <button
+                    type="submit"
+                    className="w-40 mr-8 bg-black   hover:bg-logoClr text-white   font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    Update Now
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <div className="mb-4">
-          <label htmlFor="phone" className="block text-gray-700 font-bold mb-2">
-            Phone
-          </label>
-          <input
-            required
-            type="Number"
-            id="customerPhone"
-            name="customerPhone"
-            value={customerPhone}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter phone number"
-          />
+        <div className="flex justify-center  pb-2 mr-10 absolute bottom-0 right-10">
+          <Dashcopy />
         </div>
-        <div className="mb-6">
-          <label
-            htmlFor="address"
-            className="block text-gray-700 font-bold mb-2"
-          >
-            Address
-          </label>
-          <textarea
-            id="customerAddress"
-            name="customerAddress"
-            value={customerAddress}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter address"
-            rows="4"
-          ></textarea>
-        </div>
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            className="bg-black hover:bg-blue-700 text-white   font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 }

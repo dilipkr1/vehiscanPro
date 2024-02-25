@@ -37,16 +37,16 @@ function Contactus() {
 
             <p className="text-pgcolor text-xl font-roboto leading-10">
               <i class="fa-solid fa-phone pr-2"></i>WhatsApp Only{" "}
-              <a className="text-shopbgcolor" href="#">
+              <a className="text-shopbgcolor" href="/">
                 1234567890
               </a>
               <br /> Call :{" "}
-              <a className="text-shopbgcolor" href="#">
+              <a className="text-shopbgcolor" href="/">
                 0120 360 2633
               </a>
               <br />
               For Business Only :{" "}
-              <a className="text-shopbgcolor" href="#">
+              <a className="text-shopbgcolor" href="/">
                 1234567890
               </a>
             </p>
@@ -63,27 +63,27 @@ function Contactus() {
             </h5>
             <ul className="flex gap-8">
               <li>
-                <a href="#">
+                <a href="/">
                   <i className="fa-brands fa-facebook bg-bgnavclr rounded-full px-2 py-2"></i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/">
                   <i className="fa-brands fa-instagram bg-bgnavclr rounded-full px-2 py-2"></i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/">
                   <i className="fa-brands fa-twitter bg-bgnavclr rounded-full px-2 py-2"></i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/">
                   <i className="fa-brands fa-youtube bg-bgnavclr rounded-full px-2 py-2"></i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/">
                   <i className="fa-brands fa-linkedin bg-bgnavclr rounded-full px-2 py-2"></i>
                 </a>
               </li>
@@ -200,6 +200,7 @@ function Contactus() {
 
       <div className="map lg:ml-20 bg-pricingcard">
         <iframe
+          title="rendering map "
           className="hover: scale-150 duration-150 "
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5162.713463886026!2d75.73438600415845!3d26.854709420798688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db56937ee5f93%3A0xd828666dcdcb6069!2sVehiclean%20smart%20solutions%20pvt!5e0!3m2!1sen!2sin!4v1706969780286!5m2!1sen!2sin"
           allowfullscreen=""

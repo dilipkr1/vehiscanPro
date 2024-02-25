@@ -1,42 +1,17 @@
 import "./setting.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Dashnavbar from "../DashNav/Dashnavbar";
-import { SettingDataContext } from "../../context/settingDetContext";
+import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useNavigate } from "react-router-dom";
-import vehicleanImage from "../../images/vlogo.png";
 import Dashcopy from "../Dashcopy/Dashcopy";
 export default function Global() {
+const [file, setFile] = useState(null);
+
   const navigate = useNavigate();
-  const { settingData } = useContext(SettingDataContext);
-  console.log(settingData);
-  const [formData, setFormData] = useState({
-    businessName: "",
-    phone: "",
-    email: "",
-    address: "",
-    bio: "",
-  });
 
-  const customerid = "65cb574d3aa32d9a197b2002";
-
-  useEffect(() => {
-    if (settingData) {
-      const flattenedData = Object.values(settingData).flat();
-      const foundSettingData = flattenedData.find(
-        (data) => data && data._id === customerid
-      );
-
-      if (foundSettingData) {
-        setFormData(foundSettingData);
-      } else {
-        console.log("Setting data with the specified ID not found.");
-      }
-    } else {
-      console.log("Setting data is undefined or null.");
-    }
-  }, [settingData, customerid]);
-
+  const [formData, setFormData] = useState({});
+  
   function handlChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
@@ -44,18 +19,26 @@ export default function Global() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const formDataWithImage = new FormData();
+      formDataWithImage.append("businessImage", file);
+      // formDataWithImage.append("businessImage2", file2);
+      formDataWithImage.append("businessName", formData.businessName);
+      formDataWithImage.append("phone", formData.phone);
+      formDataWithImage.append("email", formData.email);
+      formDataWithImage.append("address", formData.address);
+      formDataWithImage.append("bio", formData.bio);
+
       const response = await fetch(
         "http://localhost:8000/api/settings/businessDetails",
         {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+          method: "POST",
+          body: formDataWithImage,
         }
       );
+
       if (response.ok) {
-        navigate("/dashboard/custoemrs/global");
+        // setFile(formData.get('businessImage'))
+        navigate("/dashboard");
         console.log("Request successful");
       } else {
         const errorData = await response.json();
@@ -70,13 +53,62 @@ export default function Global() {
     <div>
       <div className="home text-main">
         <Sidebar />
-        <div className="homeContainer">
+        <div className="homeContainer relative">
           <Dashnavbar />
+
           <div className="top">
             <h1 className="text-2xl font-roboto tracking-wide">Settings</h1>
           </div>
           <div className="container formContainer bottom border-slate-200 border-2">
-            <form onSubmit={handleSubmit} className="ml-5 mt-15	   p-7 rounded">
+            <form
+              onSubmit={handleSubmit}
+              enctype="multipart/form-data"
+              className="ml-5 mt-15 p-7 rounded"
+            >
+              <div className="w-40 mx-7 p-3 pr-10 absolute right-0 top-30">
+                <img
+                  src={
+                    file
+                      ? URL.createObjectURL(file)
+                      : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  }
+                  alt="vehiConnect_logo"
+                />
+                <div className="formInput">
+                  <label htmlFor="file">
+                    Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                  </label>
+                  <input
+                    name="businessImage2"
+                    type="file"
+                    id="file2"
+                    onChange={(e) => setFile(e.target.files[0])}
+                    style={{ display: "none" }}
+                  />
+                </div>
+              </div>
+              <div className="w-60 m-4 p-3 absolute right-0 bottom-10">
+                <img
+                  src={
+                    file
+                      ? URL.createObjectURL(file)
+                      : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  }
+                  alt="vehiConnect_logo"
+                />
+                <div className="formInput">
+                  <label htmlFor="file">
+                    Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                  </label>
+                  <input
+                    name="businessImage"
+                    type="file"
+                    id="file"
+                    onChange={(e) => setFile(e.target.files[0])}
+                    style={{ display: "none" }}
+                  />
+                </div>
+              </div>
               <div className="flex flex-wrap gap-0 w-full mt-3">
                 <div className=" lg:w-1/2 flex flex-col">
                   <label className="mb-2 text-lg" for="full_name">
@@ -165,10 +197,6 @@ export default function Global() {
                 </button>
               </div>
             </form>
-
-            <div className="m-10 p-4">
-              <img src={vehicleanImage} alt="" />
-            </div>
           </div>
           <div className="flex justify-center  pb-2 mr-10">
             <Dashcopy />

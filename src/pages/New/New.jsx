@@ -1,11 +1,9 @@
 import "./new.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import Navbar from "../DashNav/Dashnavbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
- 
+import Dashnavbar from "../DashNav/Dashnavbar";
+import Dashcopy from "../Dashcopy/Dashcopy";
 
 const New = ({ inputs, title }) => {
   const naviagte = useNavigate();
@@ -52,7 +50,7 @@ const New = ({ inputs, title }) => {
     <div className="new">
       <Sidebar />
       <div className="newContainer">
-        <Navbar />
+        <Dashnavbar />
         <div className="top">
           <h1 className="text-2xl font-roboto tracking-wide">
             <i class="fa-solid fa-user"></i> {title}
@@ -60,10 +58,10 @@ const New = ({ inputs, title }) => {
         </div>
         <div className="bottom">
           <div className="right">
-            <div className="container formContainer">
+            <div className="container w-full">
               <form
                 onSubmit={handleSubmit}
-                className="ml-5 mt-20	 border-slate-200 border-2 p-10 rounded"
+                className="ml-5 mt-10	w-full  p-10 rounded"
               >
                 <div className="flex flex-wrap gap-0 w-full">
                   <div className=" lg:w-1/2 flex flex-col">
@@ -102,10 +100,10 @@ const New = ({ inputs, title }) => {
                     </label>
                     <input
                       required
-                       className="w-90 rounded formInput mr-10"
+                      className="w-90 rounded formInput mr-10"
                       type="Number"
                       placeholder="Mobile Number"
-                       onChange={handleChange}
+                      onChange={handleChange}
                       id="customerPhone"
                       name="customerPhone"
                       value={customer.customerPhone}
@@ -127,10 +125,10 @@ const New = ({ inputs, title }) => {
                     />
                   </div>
                 </div>
-                <div className="flex justify-center mt-8  ">
+                <div className="flex justify-end mt-10  ">
                   <button
                     type="submit"
-                    className="bg-black   hover:bg-logoClr text-white   font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+                    className="w-40 mr-8 bg-black   hover:bg-logoClr text-white   font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
                   >
                     Add Now
                   </button>
@@ -138,6 +136,9 @@ const New = ({ inputs, title }) => {
               </form>
             </div>
           </div>
+        </div>
+        <div className="flex justify-center  pb-2 mr-10 absolute bottom-0 right-10">
+          <Dashcopy />
         </div>
       </div>
     </div>

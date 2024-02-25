@@ -57,7 +57,7 @@ export default function Contact() {
       </div>
        <div className="contactBtn">
         <button className="btn">
-          <a className="btnLink" href="#">
+          <a className="btnLink" href="/">
             Message
           </a>
         </button>

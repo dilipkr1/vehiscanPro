@@ -1,28 +1,34 @@
 export const packageColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", width: 50 },
   {
-    field: "package",
+    field: "packageName",
     headerName: "Packages Name",
-    width: 230,
+    width: 200,
   },
   {
-    field: "validity",
-    headerName: "Validity",
-    width: 230,
-  },
-  {
-    field: "price",
-    headerName: "Price",
-    width: 100,
-  },
-  {
-    field: "subscribe",
+    field: "packageTitle",
+    headerName: "Title",
     width: 150,
-     headerName: 'Subscribe ', 
+  }, {
+    field: "packageDescription",
+    headerName: "Description",
+    width: 120,
+  }, {
+    field: "packagePrice",
+    headerName: "Price",
+    width: 120,
+  }, {
+    field: "packageDiscount",
+    headerName: "Discount",
+    width: 80,
+  }, {
+    field: "packageImg",
+    headerName: "Packages Image",
+    width: 150,
     renderCell: (params) => (
-      <a href={params.value} target="_blank" rel="noopener noreferrer">subscribe now</a>
-    )
-  }
+      <img src={params.value} alt="Package Image" style={{ width: "50px", height: "50px", borderRadius: "50%" }} />
+    ),
+  },
 ];
 
 
@@ -30,11 +36,11 @@ export const packageColumns = [
 export const packageRows = [
   {
     id: 1,
-    package: "On Demand Car Cleaning",
+    package: "Daily Car Cleaning",
     validity: "365 days",
     price: "₹599/",
     subscribe: "https://wa.me/917300007462?text=Hello,I%20have%20a%20query%20for%20my%20Hatchback%20Car%20cleaning."
- 
+
   },
   // {
   //   id: 2,
@@ -43,13 +49,13 @@ export const packageRows = [
   //   price: "₹1099/-",
   //   subscribe: "https://wa.me/917300007462?text=Hello,I%20have%20a%20query%20for%20my%20Hatchback%20Car%20cleaning."
   // },
-   
+
   // {
   //   id: 4,
   //   package: "On Demand Car Cleaning",
   //   validity: "365 days",
   //   price: "₹599/",
   //   subscribe: "https://wa.me/917300007462?text=Hello,I%20have%20a%20query%20for%20my%20Hatchback%20Car%20cleaning."
- 
+
   // } 
 ];

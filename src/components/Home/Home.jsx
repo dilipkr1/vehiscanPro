@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="flex lg:justify-start lg:px-20 lg:flex-row justify-center lg:text-left lg:items-start items-center customMobflexCol lg:my-25 lg:px-50 mx-8 my-20 font-roboto customTextalign">
       <div className="flex lg:justify-start  flex-col items-end">
-        <a href="http://localhost:3000/">
+        <a href="/">
           <img
             className="lg:w-90 lg:pt-10"
             src="/images/home1.png"

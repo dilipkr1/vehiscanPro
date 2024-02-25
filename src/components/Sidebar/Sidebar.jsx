@@ -6,8 +6,8 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreIcon from "@mui/icons-material/Store";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
- import ExitToAppIcon from "@mui/icons-material/ExitToApp";
- import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ const Sidebar = () => {
           </div>
         </Link>
       </div>
-       <div className="pl-2">
+      <div className="pl-2">
         <ul className="list-none m-0 p-0">
           <p className="titleNav">DASHBOARD</p>
           <Link to="/dashboard" style={{ textDecoration: "none" }}>
@@ -61,7 +61,7 @@ const Sidebar = () => {
             </li>
           </Link>
           <p className="titleNav">PACKAGES</p>
-          <Link to="/dashboard/customers/packages">
+          <Link to="/dashboard/packages/">
             <li className="dashList">
               <InsertChartIcon className="iconSideBar" />
               <span className="sideBarSpan">Packages</span>
@@ -69,25 +69,15 @@ const Sidebar = () => {
           </Link>
 
           <p className="titleNav">SETTING</p>
-          <Link to="/dashboard/customers/global"> 
-          <li className="dashList">
-            <SettingsSystemDaydreamOutlinedIcon className="iconSideBar" />
-            <span className="sideBarSpan">Settings</span>
-          </li>
+          <Link to="/dashboard/customers/global">
+            <li className="dashList">
+              <SettingsSystemDaydreamOutlinedIcon className="iconSideBar" />
+              <span className="sideBarSpan">Settings</span>
+            </li>
           </Link>
           <li className="dashList">
             <PsychologyOutlinedIcon className="iconSideBar" />
             <span className="sideBarSpan">Third Party</span>
-          </li>
-
-          <p className="titleNav">USER</p>
-          <li className="dashList">
-            <AccountCircleOutlinedIcon className="iconSideBar" />
-            <span className="sideBarSpan">Profile</span>
-          </li>
-          <li className="dashList">
-            <ExitToAppIcon className="iconSideBar" />
-            <span className="sideBarSpan">Logout</span>
           </li>
         </ul>
       </div>

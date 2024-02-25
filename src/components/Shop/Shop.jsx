@@ -20,7 +20,7 @@ export default function Shop() {
       <div className="flex flex-wrap mobFlexCol ">
         {shoppingData.map((product) => (
           <Shoppingcard
-            key={product.id}
+            productId={product.id}
             img={product.image}
             price={product.price}
             discountedPrice={product.discountedPrice}

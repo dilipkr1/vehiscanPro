@@ -1,38 +1,64 @@
-import React from "react";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
 
-export default function () {
+const settings = ['Profile']; // Only keeping the 'Profile' setting
+
+function ResponsiveAppBar() {
+   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
-    <div>
-      <div
-        class=" bg-gray-800 text-black w-56 min-h-screen overflow-y-auto transition-transform transform -translate-x-full ease-in-out duration-300"
-        id="sidebar"
-      >
-        <div class="p-4">
-          <h1 class="text-2xl font-semibold">Sidebar</h1>
-          <ul class="mt-4">
-            <li class="mb-2">
-              <a href="#" class="block hover:text-indigo-400">
-                Home
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="#" class="block hover:text-indigo-400">
-                About
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="#" class="block hover:text-indigo-400">
-                Services
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="#" class="block hover:text-indigo-400">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
+export default ResponsiveAppBar;

@@ -11,10 +11,10 @@ const SettingDataProvider = ({ children }) => {
     });
   }, []);
 
-
-  const fetchSettingsData = async () => {
+   const fetchSettingsData = async () => {
     const response = await fetch('http://localhost:8000/api/settings/businessDetails');
     const data = await response.json();
+    console.log(data)
     return data;
   };
 
@@ -25,6 +25,5 @@ const SettingDataProvider = ({ children }) => {
   );
 
 }
-
-
+ 
 export {SettingDataContext, SettingDataProvider}

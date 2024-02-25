@@ -17,7 +17,7 @@ export default function Bestsellingpro(props) {
 
 
       <Card
-        title="NGF132 Parking tags
+        title="VehiClean Parking tags
 "
         price="499"
         description="30 Days Money back, Dedicated Support and lifelong service.

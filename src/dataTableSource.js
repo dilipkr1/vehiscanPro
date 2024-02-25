@@ -8,7 +8,7 @@ export const userColumns = [
   {
     field: "customerEmail",
     headerName: "Email",
-    width: 200,
+    width: 230,
   },
   {
     field: "customerPhone",
@@ -21,4 +21,3 @@ export const userColumns = [
     width: 200,
   },
 ];
- 
