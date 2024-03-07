@@ -8,11 +8,11 @@ import Dashnavbar from "../DashNav/Dashnavbar";
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function Edit() {
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
   const { customerData } = useContext(CustomerContext);
   const [customer, setCustomer] = useState({});
   const { customerid } = useParams();
-
+  console.log(customerid);
 
   useEffect(() => {
     if (customerData && customerData.length > 0) {
@@ -27,9 +27,19 @@ export default function Edit() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Retrieve bearer token from localStorage
+    const bearerToken = localStorage.getItem("token");
+
+    // Define headers with bearer token
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${bearerToken}`,
+    };
+
     const requestOptions = {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: headers,
       body: JSON.stringify(customer),
     };
 
@@ -43,7 +53,7 @@ export default function Edit() {
         throw new Error("Failed to update customer data");
       }
 
-      naviagte("/dashboard/customers");
+      navigate("/dashboard/customers");
     } catch (error) {
       console.error("Error updating customer data:", error.message);
     }

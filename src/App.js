@@ -29,7 +29,15 @@ import Contact from "./components/Contact/Contact";
 import Walletmanagement from "./pages/Walletmanagement/Walletmanagement";
 import Navmob from "./components/Navmob/Navmob";
 import CreatePackgage from "./components/Createpackages/CreatePackage";
-// import Upload from "./components/PackageUpload/Upload";
+import Packageupdate from "./components/Packageupdate/Packageupdate";
+import Checkout from "./components/Checkout/Checkout";
+import Sngleproduct from "./components/Singleproduct/SingleProduct";
+import Singleproduct from "./components/Singleproduct/SingleProduct";
+import { Tabs } from "@mui/material";
+import Order from "./pages/Orders/Order";
+import OrderPlaced from "./components/Shop/OrderPlaced";
+import SinglerRow from "./pages/Orders/SinglerRow";
+
 
 function App() {
   return (
@@ -38,10 +46,15 @@ function App() {
         <Routes>
           <Route path="/dashboard">
             <Route index element={<DbHome />} />
+            <Route path="/dashboard/orders" element={< Order />} />
+            {/* signgle-row */}
+            <Route path="/dashboard/single-row" element={< SinglerRow />} />
+
             <Route path="/dashboard/packages">
               <Route index element={<Packages />} />
               <Route path=":packageId">
                 <Route index element={<CreatePackgage />} />
+                <Route path="update-package" element={<Packageupdate />} />
               </Route>
             </Route>
 
@@ -60,13 +73,9 @@ function App() {
                 <Route index element={<Wallet />} />
                 <Route path="/dashboard/customers/wallet/add-wallet" element={<Walletmanagement />} />
               </Route>
-              {/* <Route path="/dashboard/customers/packages" element={<Packages />} /> */}
               <Route path="/dashboard/customers/global" element={<Global />} />
               <Route path="/dashboard/customers/sub-mails" element={<Submail />} />
-              <Route path="/dashboard/customers/profile" element={<Navmob />} />
-              {/* <Route path="/dashboard/customers/auth" element={<Login2 />} /> */}
-              {/* <Route path="/dashboard/customers/auth" element={<Register2 />} /> */}
-
+              {/* <Route path="/dashboard/customers/profile" element={<Profile />} /> */}
 
             </Route>
           </Route>
@@ -84,10 +93,20 @@ function App() {
             />
             <Route path="/login" element={<Login2 />} />
             <Route path="/Signup" element={<Signup />} />
-            <Route path="shop" element={<Shop />} />
+            <Route path="shop">
+              <Route index element={<Shop />} />
+              <Route path="/shop/order-placed" element={<OrderPlaced />} />
+
+              <Route path=":productId">
+                <Route index element={<Shop />} />
+                <Route path="product" index element={<Singleproduct />} />
+                <Route path="checkout" element={<Checkout />} />
+              </Route>
+            </Route>
+            <Route path="/profile" element={<Profile />} />
             <Route path="contact" element={<Contact />} />
             <Route path="news" element={<News />} />
-            <Route path="*" element={<Nopage />} />``
+            <Route path="*" element={<Nopage />} />
           </Route>
         </Routes>
 

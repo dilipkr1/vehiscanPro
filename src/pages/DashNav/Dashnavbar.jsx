@@ -10,8 +10,17 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
-import circleLogo from "../../images/vehiclean.png";
+ import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+ 
 const Dashnavbar = () => {
+  const { dispatch, token, setIsAuthenticated } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+  };
+
   return (
     <div className="bg-logoClr dashNav flex items-center text-sm font-normal  overflow-hidden border-none">
       <div className="wrapper w-full p-0 flex items-center justify-end mr-5">
@@ -42,7 +51,7 @@ const Dashnavbar = () => {
                     />
                     <Menu {...bindMenu(popupState)}>
                       <MenuItem onClick={popupState.close}>
-                        <Link to={"profile"}>
+                        <Link to={"/dashboard/customers/profile"}>
                           <AccountCircleIcon style={{ color: "orange" }} />
                           &nbsp;&nbsp;Profile
                         </Link>
@@ -52,9 +61,10 @@ const Dashnavbar = () => {
                         &nbsp;&nbsp;Account Settings
                       </MenuItem>
                       <hr className="mt-3" />
-                      <MenuItem onClick={popupState.close}>
+                      <MenuItem onClick={handleLogOut}>
                         <Link to="/">
                           <ExitToAppIcon
+                            onClick={handleLogOut}
                             style={{ color: "orange" }}
                             className="iconSideBar"
                           />

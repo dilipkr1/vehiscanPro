@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 
 export default function News() {
   const [news, setNews] = useState([]);
-  
+
+   
+
   useEffect(() => {
     const fetchData = async () => {
       try {

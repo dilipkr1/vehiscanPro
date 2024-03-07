@@ -56,7 +56,7 @@ const CreatePackage = () => {
         <Dashnavbar />
         <div className="top">
           <h1 className="text-2xl font-roboto tracking-wide">
-            <i className="fa-solid fa-box"></i> Create Package
+            <i className="fa-solid fa-box"></i> Add new Products
           </h1>
         </div>
         <div className="bottom">
@@ -72,6 +72,7 @@ const CreatePackage = () => {
                       Package Name
                     </label>
                     <input
+                    required
                       onChange={handleChange}
                       id="packageName"
                       name="packageName"
@@ -132,8 +133,9 @@ const CreatePackage = () => {
                       Package Price
                     </label>
                     <input
+                    required
                       className="w-90 rounded formInput mr-10"
-                      type="text"
+                      type="Number"
                       placeholder="Package Price"
                       onChange={handleChange}
                       id="packagePrice"
@@ -146,9 +148,10 @@ const CreatePackage = () => {
                       Package Discount
                     </label>
                     <input
+                    required
                       className="w-90 rounded formInput mr-10"
-                      type="text"
-                      placeholder="Package Discount"
+                      type="Number"
+                      placeholder="Package Discount Only "
                       onChange={handleChange}
                       id="packageDiscount"
                       name="packageDiscount"
@@ -161,7 +164,7 @@ const CreatePackage = () => {
                     type="submit"
                     className="w-40 mr-8 bg-black   hover:bg-logoClr text-white   font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
                   >
-                    Add Pack...
+                    PUBLISH
                   </button>
                 </div>
               </form>

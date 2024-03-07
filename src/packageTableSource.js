@@ -31,31 +31,3 @@ export const packageColumns = [
   },
 ];
 
-
-//temporary data
-export const packageRows = [
-  {
-    id: 1,
-    package: "Daily Car Cleaning",
-    validity: "365 days",
-    price: "₹599/",
-    subscribe: "https://wa.me/917300007462?text=Hello,I%20have%20a%20query%20for%20my%20Hatchback%20Car%20cleaning."
-
-  },
-  // {
-  //   id: 2,
-  //   package: "Platinum Sparkle",
-  //   validity: "365 days",
-  //   price: "₹1099/-",
-  //   subscribe: "https://wa.me/917300007462?text=Hello,I%20have%20a%20query%20for%20my%20Hatchback%20Car%20cleaning."
-  // },
-
-  // {
-  //   id: 4,
-  //   package: "On Demand Car Cleaning",
-  //   validity: "365 days",
-  //   price: "₹599/",
-  //   subscribe: "https://wa.me/917300007462?text=Hello,I%20have%20a%20query%20for%20my%20Hatchback%20Car%20cleaning."
-
-  // } 
-];

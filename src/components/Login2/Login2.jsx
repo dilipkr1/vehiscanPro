@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Login2.css";
 import logo from "../../images/vlogo.png";
 import roundLogo from "../../images/vehiclean.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useCustomer } from "../../context/userContext";
 import axios from "axios";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Login2() {
-  const { setCustomer } = useCustomer();
+  const [newUser, setNewUser] = useState(null);
+  const { dispatch, isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: " ",
+    password: " ",
   });
 
   const [error, setError] = useState(null);
@@ -32,61 +34,44 @@ export default function Login2() {
       );
 
       if (response.status === 200) {
-        const { token } = response.data;
-        sessionStorage.setItem("token", token);
+        const { token, existingUser } = response.data;
+        localStorage.setItem("token", token);
+
         navigate("/dashboard");
       } else {
         const errorData = response.data;
         console.error("Login Error:", errorData);
-        setError(errorData, "Login Failed. Please try again later.");
+        setError(errorData.message || "Login Failed. Please try again later.");
       }
     } catch (error) {
-      console.error("Fetch Error:", error);
-      setError("Network error. Please check your internet connection.");
+      setError("Wrong Credentials" || error);
     }
   };
 
   useEffect(() => {
-    const fetchCustomerResponses = async () => {
+    const LoginUser = async () => {
       try {
-        const token = sessionStorage.getItem("token");
-        if (!token) {
+        const token = localStorage.getItem("token");
+        if (!isAuthenticated) {
+          // Use isAuthenticated from context instead of state variable
           return;
         }
-
-        const response = await axios.get(
-          "http://localhost:8000/api/auth/users",
-          {
-            credentials: 'include',
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (response.status === 200) {
-          const customerResponses = response.data;
-          console.log(customerResponses);
-          navigate("/dashboard");
-        } else {
-          console.error("Fetch Customer Responses Error:", response.data);
-        }
+        navigate("/dashboard");
       } catch (error) {
         console.error("Fetch Error:", error);
       }
     };
-
-    fetchCustomerResponses();
-  }, []);
+    LoginUser();
+  }, [isAuthenticated]);
   return (
     <div class="mt-20  bgImage font-[sans-serif] text-[#333] bg-white flex items-center justify-center md:h-screen p-4">
-      <div class="shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)] max-w-6xl rounded-md p-6">
+      <div class="  max-w-6xl rounded-md p-6">
         <div className="flex justify-end">
           <Link to="/">
             <img src={roundLogo} alt="logo" class="w-20 md:mb-4 mb-12" />
           </Link>
         </div>
+        {newUser}
         <div class="grid md:grid-cols-2 items-center gap-8">
           <div class="max-md:order-1">
             {/* "https://readymadeui.com/signin-image.webp */}
@@ -196,10 +181,14 @@ export default function Login2() {
             <div class="mt-12">
               <button
                 type="submit"
-                class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded-full text-white bg-black hover:bg-logoClr focus:outline-none"
+                class="w-full   py-2.5 px-4 text-sm font-semibold rounded-full text-white bg-black hover:bg-logoClr focus:outline-none"
               >
                 Sign in
               </button>
+              <div className="flex justify-center">
+                {error && <p className="text-red text-sm">{error}</p>}
+              </div>
+
               <p class="text-sm text-center mt-8">
                 Don't have an account{" "}
                 <Link className="text-xl font-normal" to="/signup">

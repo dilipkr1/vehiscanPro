@@ -7,8 +7,7 @@ const CustomerProvider = ({ children }) => {
   useEffect(() => {
     fetchCustomerData().then(data => {
       setCustomerData(data);
-
-    });
+     });
   }, []);
  
   const fetchCustomerData = async () => {

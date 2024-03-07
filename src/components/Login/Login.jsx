@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import customerprofile from "../Profile/Profile";
-import { useCustomer } from "../../context/userContext";
-
-function Login() {
-  const { setCustomer } = useCustomer();
+  
+function Login() {  
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -16,39 +13,10 @@ function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
- 
- 
-  // useEffect(() => {
-  //   const fetchUserDetails = async () => {
-  //     try {
-  //       const token = sessionStorage.getItem("token");
-  //       const customer = sessionStorage.getItem("customer");
-
-  //       if (token) {
-  //         navigate("/dashboard");
-  //         const response = await fetch(
-  //           "http://localhost:8000/api/customer/details",
-  //           {
-  //             headers: {
-  //               Authorization: `Bearer ${token}`,
-  //             },
-  //           }
-  //         );
-  //         if (response.ok) {
-            
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.error("Fetch User Details Error:", error);
-  //     }
-  //   };
-
-  //   fetchUserDetails();
-  // }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+     try {
       const response = await fetch("http://localhost:8000/api/auth/login", {
         method: "POST",
         headers: {
@@ -57,11 +25,9 @@ function Login() {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        const { token } = await response.json();
-        sessionStorage.setItem("token", token);
-        navigate("/dashboard");
+         navigate("/dashboard");
       } else {
-        const errorData = await response.json();
+          const errorData = await response.json();
         console.error("Login Error:", errorData);
         setError(errorData, "Login Failed. Please try again later.");
       }
@@ -142,7 +108,7 @@ function Login() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full  text-main font-medium bg-white  hover:bg-white-700 focus:ring-4 focus:outline-none focus:ring-white-300   rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-white-800"
+                    className="w-full  text-main font-medium bg-white  hover:bg-white-700 focus:ring-4 focus:outline-none focus:ring-white-300   rounded-lg text-sm px-5 py-2.5 text-center dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-white-800"
                 >
                   Sign in
                 </button>

@@ -5,21 +5,20 @@ export default function Home() {
   return (
     <div className="flex lg:justify-start lg:px-20 lg:flex-row justify-center lg:text-left lg:items-start items-center customMobflexCol lg:my-25 lg:px-50 mx-8 my-20 font-roboto customTextalign">
       <div className="flex lg:justify-start  flex-col items-end">
-        <a href="/">
-          <img
-            className="lg:w-90 lg:pt-10"
-            src="/images/home1.png"
-            alt="home1_images"
-          />
-        </a>
+        <img
+          className="lg:w-90 lg:pt-10"
+          src="/images/home1.png"
+          alt="home1_images"
+        />
       </div>
 
       <div className="lg:text-left lg:flex lg:flex-col lg:items-start text-right ">
-        <span className="lg:text-left customTextalign text-black-500">
-          NGF132 - Now Get Found.
+        <span className="lg:text-left customTextalign text-black-500 tracking-normal">
+          <span className="lg:text-xl">VehiConnect</span> - Now Connect with
+          Vehicle Owner.
         </span>
         <h1 className="giveSpace customTextalign mt-2.5 mx-0 mb-5 lg:text-3xl  text-4xl font-roboto tracking-wide font-bold text-main font-700  lg:text-left  leading-7.2 ">
-          Let people contact you in case of any issue with your parked vehicle
+          Let make you your Vehicle Safe when it parked
         </h1>
         <p className="giveSpace text-pgcolor customTextalign lg:text-left sm:text-base leading-30">
           Your Phone number is not shared, and anyone with a smartphone can

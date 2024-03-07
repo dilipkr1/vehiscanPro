@@ -6,12 +6,12 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useNavigate } from "react-router-dom";
 import Dashcopy from "../Dashcopy/Dashcopy";
 export default function Global() {
-const [file, setFile] = useState(null);
+  const [file, setFile] = useState(null);
 
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({});
-  
+
   function handlChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
@@ -198,7 +198,38 @@ const [file, setFile] = useState(null);
               </div>
             </form>
           </div>
+
           <div className="flex justify-center  pb-2 mr-10">
+            
+            <div className="ml-3">
+              <ul className="flex gap-3 justify-center items-center">
+                <li>
+                  <a href="#">
+                    <i className="fa-brands fa-facebook bg-white rounded px-2 py-2"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa-brands fa-instagram bg-white rounded  "></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa-brands fa-twitter bg-white rounded    "></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa-brands fa-youtube bg-white rounded  "></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i className="fa-brands fa-linkedin bg-white rounded  "></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
             <Dashcopy />
           </div>
         </div>

@@ -5,23 +5,29 @@ import App from './App';
 
 import { CustomerProvider } from './context/customrContext'
 import { SettingDataProvider } from './context/settingDetContext'
-import { UserContextProvider } from './context/userContext'
+import { AuthProvider } from './context/AuthContext';
 import { TransactionProvider } from './context/transactonContext'
 import { PackageProvider } from './context/packageContext';
+import { CartProvider } from './context/cartContext'
+import { OrderProvider } from './context/OrderContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <PackageProvider>
-        <TransactionProvider>
-            <UserContextProvider>
-                <CustomerProvider>
-                    <SettingDataProvider>
-                        <App />
+    <AuthProvider>
+        <OrderProvider>
+            <CartProvider>
+                <PackageProvider>
+                    <TransactionProvider>
+                        <CustomerProvider>
+                            <SettingDataProvider>
 
-                    </SettingDataProvider>
-                </CustomerProvider>
-            </UserContextProvider>
-        </TransactionProvider>
-    </PackageProvider>
+                                <App />
 
+                            </SettingDataProvider>
+                        </CustomerProvider>
+                    </TransactionProvider>
+                </PackageProvider>
+            </CartProvider>
+        </OrderProvider>
+    </AuthProvider>
 );
 

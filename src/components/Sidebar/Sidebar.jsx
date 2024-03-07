@@ -17,7 +17,7 @@ const Sidebar = () => {
   return (
     <div className="dsidebar  min-h-full bg-logoClr    ">
       <div className=" flex justify-center items-center bg-contain">
-        <Link to="/dashboard" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <div className="items-center justify-center  ">
             <img className="vehilogoSize" src={vehicleanImage} alt="Images" />
           </div>
@@ -65,6 +65,12 @@ const Sidebar = () => {
             <li className="dashList">
               <InsertChartIcon className="iconSideBar" />
               <span className="sideBarSpan">Packages</span>
+            </li>
+          </Link>
+          <Link to="/dashboard/orders">
+            <li className="dashList">
+              <InsertChartIcon className="iconSideBar" />
+              <span className="sideBarSpan">Orders</span>
             </li>
           </Link>
 

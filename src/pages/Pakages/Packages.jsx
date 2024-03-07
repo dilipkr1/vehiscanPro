@@ -3,7 +3,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Dashnavbar from "../DashNav/Dashnavbar";
 import { DataGrid } from "@mui/x-data-grid";
 import { packageColumns } from "../../packageTableSource";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Dashcopy from "../Dashcopy/Dashcopy";
 import Button from "@mui/material/Button";
@@ -14,8 +14,11 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function Packages() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const { packageData, setPackageData } = useContext(PackageContext);
+
+
 
   useEffect(() => {
     setIsLoading(false);
@@ -34,8 +37,7 @@ export default function Packages() {
     try {
       const url = `http://localhost:8000/api/packages/delete-package/${id}`;
       const response = await axios.delete(url);
-      console.log(`Package with ID ${id} deleted successfully`);
-      const filteredData = packageData.filter((item) => item._id !== id);
+       const filteredData = packageData.filter((item) => item._id !== id);
       setPackageData(filteredData);
     } catch (error) {
       console.log("Error", error);
@@ -51,10 +53,10 @@ export default function Packages() {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to={`#`} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-            <Link to={`#`} style={{ textDecoration: "none" }}>
+            <Link
+              to={`/dashboard/packages/${params.row._id}/update-package`}
+              style={{ textDecoration: "none" }}
+            >
               <div className="updateButton">
                 <EditIcon />
               </div>
@@ -81,7 +83,7 @@ export default function Packages() {
           <Dashnavbar />
           <div className="mb-0 pt-5 px-5">
             <h2 className="text-2xl font-serif font-extraligh tracking-wider leading-10  text-main">
-              Our Packages
+              Our Products
             </h2>
           </div>
           <div className="flex justify-end items-end">
@@ -90,7 +92,7 @@ export default function Packages() {
                 style={{ marginRight: "100px", backgroundColor: "#ff5722" }}
                 variant="contained"
               >
-                Add Packages
+                Add new Prouct
               </Button>
             </Link>
           </div>
@@ -103,7 +105,7 @@ export default function Packages() {
               pageSize={9}
               rowsPerPageOptions={[9]}
               checkboxSelection
-            />
+             />
           </div>
         </div>
         <div className="flex justify-center  pb-2 mr-10 absolute bottom-0 right-10">
