@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <div className="fixed w-full z-10 top-0  bg-white z-1 flex  justify-between items-center h-25  py-3 px-3.5 lg:pt-7  border-gray border-b-0 ">
       <div className="p-2 flex justify-end w-1/3 ">
-        <Link to="/message">
+        <Link to="/">
           <img
             className="w-16 h-16"
             src={heroImg}

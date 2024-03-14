@@ -59,15 +59,11 @@ export default function Messages() {
   function changeBackgroundColor(option) {
     setSelectedOption(option);
   }
-
-  // DID :: 01205136386
-  // S-ID :: 1671
+ 
   const QrUid = uid;
   const ownerNumber = ownerPhoneNum;
 
-  const handleCall = async () => {
-    // const phoneNumber = "tel:0120-5136386";
-    // window.location.href = phoneNumber;
+  const handleCall = async () => { 
     const username = "7852010838";
     const password = "admin";
     const key = QrUid;
