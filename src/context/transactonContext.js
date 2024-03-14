@@ -16,8 +16,7 @@ const TransactionProvider = ({ children }) => {
             return response.data
         } catch (error) {
             console.error("Error fetching transaction data:", error);
-            console.log("something goin wrong")
-        }
+         }
     }
 
 

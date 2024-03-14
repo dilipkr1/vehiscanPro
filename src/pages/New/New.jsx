@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Dashnavbar from "../DashNav/Dashnavbar";
 import Dashcopy from "../Dashcopy/Dashcopy";
 
-const New = ({ inputs, title }) => {
+const New = () => {
   const naviagte = useNavigate();
   const [customer, setCustomer] = useState({
     customerName: "",
@@ -53,7 +53,7 @@ const New = ({ inputs, title }) => {
         <Dashnavbar />
         <div className="top">
           <h1 className="text-2xl font-roboto tracking-wide">
-            <i class="fa-solid fa-user"></i> {title}
+            <i class="fa-solid fa-user"></i> <span>Add New Customer</span>
           </h1>
         </div>
         <div className="bottom">

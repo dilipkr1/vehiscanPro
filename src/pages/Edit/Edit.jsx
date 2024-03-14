@@ -12,8 +12,7 @@ export default function Edit() {
   const { customerData } = useContext(CustomerContext);
   const [customer, setCustomer] = useState({});
   const { customerid } = useParams();
-  console.log(customerid);
-
+ 
   useEffect(() => {
     if (customerData && customerData.length > 0) {
       const foundCustomer = Object.values(customerData)

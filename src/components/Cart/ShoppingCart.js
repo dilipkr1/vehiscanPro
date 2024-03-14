@@ -34,7 +34,7 @@ const ShoppingCart = () => {
 
   if (!cartItems || cartItems.length === 0) {
     return <div className=' flex-col m-5 p-3 flex justify-center items-center'>
-      <p className='text-logoClr font-extrabold font-sans text-xl rounded-sm'>You Cart is empty</p>
+      <p className='text-logoClr font-extrabold font-sans text-xl rounded-sm'>Your Cart is empty</p>
       <img className='w-30 ' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXgY2__KniuYieXzn6koGTAV9WsIxplMSHTfkMwIf1sde7bnxYId7NPpfcecK5iknrj1E&usqp=CAU' />
     </div>
   }
@@ -56,6 +56,14 @@ const ShoppingCart = () => {
     return randomId.toString();
   }
 
+  function generateUID() {
+    const min = 1000;
+    const max = 9999;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  const uid = generateUID();
+  console.log(uid)
+
   const orderId = generateOrderId();
 
   const cartData = {
@@ -64,11 +72,12 @@ const ShoppingCart = () => {
       product_id: item._id,
       quantity: item.quantity,
       totalDiscount: totalDiscount,
-    
+
     })),
     orderId: orderId,
     subTotal: subTotal,
-    userId: userId
+    userId: userId,
+    uid: uid
 
   };
 

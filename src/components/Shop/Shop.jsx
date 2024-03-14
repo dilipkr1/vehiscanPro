@@ -28,7 +28,7 @@ export default function Shop() {
             </h3>
           </div>
         </div>
-        <div className=" lg:px-15 lg:mx-10">
+        <div className=" lg:px-15 lg:mx-10 lg:ml-20">
           <div className="pt-20 flex justify-between   pb-3  text-3xl  tracking-normal font-roboto text-main font-black  description">
             <h3 className="px-4 tracking-wide leading-4 text-2xl font-bold  text-black">
               SHOP FOR VEHICLEAN PRODUCTS.
@@ -46,8 +46,8 @@ export default function Shop() {
                     src={product.packageImg}
                     alt="shop_image"
                   />
-                  <span className="absolute top-0 left-0 m-1 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
-                    {product.packageDiscount}
+                  <span className="absolute top-0 left-0 m-1 tracking-wide rounded-full bg-black px-2 text-center text-sm font-medium text-white">
+                    {product.packageDiscount}% off
                   </span>
                 </Link>
                 <div className="mt-4 px-3 pb-3">

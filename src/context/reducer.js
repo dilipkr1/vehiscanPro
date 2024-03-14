@@ -9,6 +9,15 @@ const Reducer = (state, action) => {
       return { ...state, user: action.payload };
     case 'SET_ORDERS':
       return { ...state, Orders: action.payload.data };
+    case 'SET_LOADING':
+      return {
+        ...state, loading: action.payload,
+      };
+    case 'SET_BACKEND_ERROR':
+      return {
+        ...state,
+        backendError: action.payload,
+      };
     default:
       return state;
   }

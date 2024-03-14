@@ -7,13 +7,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Shop from "./components/Shop/Shop";
 import Layout from "./components/Layout/Layout";
 import Nopage from "./components/Nopage/Nopage";
-import Contactus from "./components/Usercontact/Contactus";
 import Signup from "./components/Signup/Signup";
-import Login from "./components/Login/Login";
 import New from "./pages/New/New";
 import Customers from "./pages/Customers/Customers";
 import Single from "./pages/Single/Single";
-import { customerInput } from "./formsource";
 import DbHome from "./pages/Dashboard/DbHome";
 import Edit from "./pages/Edit/Edit";
 import Packages from "./pages/Pakages/Packages";
@@ -21,35 +18,33 @@ import Global from "./pages/Global/Global"
 import Wallet from "./pages/Wallet/Wallet";
 import Message from "./pages/Message/Message";
 import Submail from "./pages/Submail/Submail";
-import Profile from "./components/Profile/Profile";
-import Login2 from "./components/Login2/Login2";
-import Register2 from "./components/Login2/Register2";
-import PhoneAuth from "./PhoneAuth";
+import Login from "./components/Login/Login";
 import Contact from "./components/Contact/Contact";
 import Walletmanagement from "./pages/Walletmanagement/Walletmanagement";
-import Navmob from "./components/Navmob/Navmob";
 import CreatePackgage from "./components/Createpackages/CreatePackage";
 import Packageupdate from "./components/Packageupdate/Packageupdate";
 import Checkout from "./components/Checkout/Checkout";
-import Sngleproduct from "./components/Singleproduct/SingleProduct";
 import Singleproduct from "./components/Singleproduct/SingleProduct";
-import { Tabs } from "@mui/material";
 import Order from "./pages/Orders/Order";
 import OrderPlaced from "./components/Shop/OrderPlaced";
 import SinglerRow from "./pages/Orders/SinglerRow";
+import Messages from "./components/Message/Messages";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
+import CusOrders from "./components/Custorder/CusOrders";
+import CusProfile from "./components/Custopro/CusProfile";
 
 
 function App() {
   return (
-    <div className="App">
+
+    <div className="App" >
       <BrowserRouter>
-        <Routes>
-          <Route path="/dashboard">
+        <Routes  >
+          <Route path="/dashboard"  >
             <Route index element={<DbHome />} />
             <Route path="/dashboard/orders" element={< Order />} />
-            {/* signgle-row */}
             <Route path="/dashboard/single-row" element={< SinglerRow />} />
-
             <Route path="/dashboard/packages">
               <Route index element={<Packages />} />
               <Route path=":packageId">
@@ -66,7 +61,7 @@ function App() {
               </Route>
               <Route
                 path="/dashboard/customers/new"
-                element={<New inputs={customerInput} title="Add New Customer" />}
+                element={<New />}
               />
               <Route path="/dashboard/customers/messages" element={<Message />} />
               <Route path="/dashboard/customers/wallet" >
@@ -75,8 +70,6 @@ function App() {
               </Route>
               <Route path="/dashboard/customers/global" element={<Global />} />
               <Route path="/dashboard/customers/sub-mails" element={<Submail />} />
-              {/* <Route path="/dashboard/customers/profile" element={<Profile />} /> */}
-
             </Route>
           </Route>
           <Route path="/" element={<Layout />}>
@@ -91,11 +84,16 @@ function App() {
                 </>
               }
             />
-            <Route path="/login" element={<Login2 />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
+            <Route path="/message">
+              <Route index element={<Messages />} />
+              <Route path="/message/success" element={<OrderPlaced title="Successfully Your Message has been Sent " paragraph="know more" bgColor="" />} />
+
+            </Route>
             <Route path="shop">
               <Route index element={<Shop />} />
-              <Route path="/shop/order-placed" element={<OrderPlaced />} />
+              <Route path="/shop/order-placed" element={<OrderPlaced title="Successfully Your Order has been placed" paragraph="see orders" />} />
 
               <Route path=":productId">
                 <Route index element={<Shop />} />
@@ -103,13 +101,19 @@ function App() {
                 <Route path="checkout" element={<Checkout />} />
               </Route>
             </Route>
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile"  >
+              <Route index element={<CusProfile />} />
+              <Route path="/profile/orders" element={< CusOrders />} />
+              <Route path="/profile/updated" element={<OrderPlaced title="Successfully Updated" paragraph="see now " />} />
+
+            </Route>
+
             <Route path="contact" element={<Contact />} />
             <Route path="news" element={<News />} />
             <Route path="*" element={<Nopage />} />
+
           </Route>
         </Routes>
-
       </BrowserRouter>
     </div>
   );

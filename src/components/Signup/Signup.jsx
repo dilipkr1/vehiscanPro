@@ -1,12 +1,14 @@
 // components/Signup.js
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-// import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 function Signup() {
+  const displayNow = "none";
   const naviagte = useNavigate();
+  const [getOtp, setGetOtp] = useState();
+  const [send, setSent] = useState("Send Otp");
   const [formData, setFormData] = useState({
     username: "",
     phone: "",
@@ -15,9 +17,70 @@ function Signup() {
   });
 
   const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessageOtp, setErrorMessageOtp] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData);
+  };
+
+  // useEffect(() => {
+  const handleSendOtp = async () => {
+    if (formData.phone.length === 10) {
+      setGetOtp(1);
+    } else {
+      setErrorMessageOtp("please enter you number!");
+      return;
+    }
+    try {
+      const url = "http://localhost:8000/api/auth/sendOtp";
+
+      const response = await axios.post(url, {
+        mobileNumber: formData.phone,
+      });
+
+      console.log(response.data);
+      if (response.data.status === 200) {
+        setSent("Otp Sent");
+      }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setErrorMessageOtp("please try, again later");
+      } else {
+        setErrorMessageOtp("Failed to send OTP. Please try again.");
+      }
+    }
+  };
+  //   handleSendOtp();
+  // }, [formData.phone]);
+
+  const handleVerifyOtp = async () => {
+    try {
+      const url = "http://localhost:8000/api/auth/verify-otp";
+      const response = await axios.post(url, {
+        mobileNumber: formData.phone,
+        enteredOtp: formData.enteredOtp,
+      });
+      console.log(response);
+      if (response.status === 200) {
+        console.log("successfully verified");
+        naviagte("/login");
+      }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setErrorMessageOtp(error.response.data.message);
+      } else {
+        setErrorMessageOtp("Failed to verify OTP. Please try again.");
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -31,7 +94,7 @@ function Signup() {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        naviagte("/login");
+        await handleSendOtp();
       } else {
         const data = await response.json();
         setErrorMessage(
@@ -44,109 +107,130 @@ function Signup() {
   };
 
   return (
-    <section className=" flex  bg-gray-50 dark:bg-gray-900 mt-20">
-      <div className="w-80 flex-3">
-        <h1>hello img</h1>
+    <div className="lg:flex justify-between mt-20  pt-10">
+      <div className="img w-full mx-5 pl-5">
+        <img className="rounded-xl w-full h-auto" src="https://cdn.leonardo.ai/users/e2c6caa2-d846-4b69-b9d3-e029a1ac4231/generations/fe23f836-6e28-4e06-bdf4-f973ac1949c2/Default_Imagine_a_sleek_modern_car_cleaning_facility_bathed_in_0.jpg" alt="" />
       </div>
-      <div className="flex-1 w-30 flex flex-col items-center justify-center px-6 py-8 marker:md:h-screen lg:py-0">
-        <div className="w-full bg-white rounded-lg    md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-main">
-              Sign up to your account
-            </h1>
-            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="username"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-main"
-                >
-                  Your Full Name
-                </label>
-                <input
-                  autoComplete="off"
-                  type="text"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-main dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Your Full Name"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-main"
-                >
-                  Mobile Number
-                </label>
-                <input
-                  autoComplete="off"
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  maxLength="10"
-                  oninput="this.value = this.value.slice(0, 10)"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-main dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Your Mobile Number (e.g., 9876543210)"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-main"
-                >
-                  Your email
-                </label>
-                <input
-                  autoComplete="off"
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-main dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="name@company.com"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-main"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-main dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="••••••••"
-                  required
-                />
-              </div>
-              {errorMessage && <p className="text-red">{errorMessage}</p>}
-              <button
-                type="submit"
-                className="w-50 text-main  border-black border-t-2 border-b-2 bg-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              >
-                Create an account
-              </button>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Already have an account ?
-                <Link className="text-xl font-normal" to="/login">
-                  Login here
-                </Link>
-              </p>
-            </form>
-          </div>
+      <div
+        style={{ width: "400px" }}
+        class="max-w-md lg:w-70 flex flex-col   mx-10 bg-white  rounded-lg overflow-hidden"
+      >
+        <div class="text-2xl py-4 px-6 bg-gray-900 text-black text-center font-bold uppercase">
+          Register
         </div>
+        <form onSubmit={handleSubmit} class="py-4 px-4">
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="name">
+              Name
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="name"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="email">
+              Email
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="email">
+              password
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="create your password"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="phone">
+              Phone Number
+            </label>
+            <div className="flex  justify-between">
+              <input
+                class="shadow mr-2 appearance-none border  rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="phone"
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                maxLength="10"
+                oninput="this.value = this.value.slice(0, 10)"
+                placeholder="Enter your phone number"
+                required
+              />
+
+              {/* <button
+                type="button"
+                onClick={() => handleSendOtp()}
+                class="flex text-xs items-center justify-center flex-none px-3 py-2 md:px-2 md:py-3 border-2 rounded-lg font-medium border-black bg-black text-white"
+              >
+                {send}
+              </button> */}
+            </div>
+          </div>
+
+          <div className="continue">
+            {errorMessageOtp && (
+              <p className="text-red text-xs font-sans ">{errorMessageOtp}</p>
+            )}
+          </div>
+          {getOtp && (
+            <div>
+              <h2 class="text-lg font-semibold mb-4">Enter OTP</h2>
+              <div className="flex justify-between mb-2">
+                <input
+                  type="text"
+                  name="enteredOtp"
+                  value={formData.enteredOtp}
+                  onChange={handleChange}
+                  placeholder="otp"
+                  maxLength="6"
+                  class="flex mr-2 w-full py-2 px-2 border-2 border-black rounded-lg font-medium placeholder:font-normal"
+                />
+                <button
+                  type="button"
+                  onClick={handleVerifyOtp}
+                  class="flex items-center   justify-center flex-none px-4 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black bg-black text-white"
+                >
+                  Verify
+                </button>
+              </div>
+            </div>
+          )}
+
+          <button
+            type="submit"
+            className="w-50 text-white   border-t-2 border-b-2 bg-black   focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          >
+            Create an account
+          </button>
+          {errorMessage && <p className="text-red">{errorMessage}</p>}
+        </form>
       </div>
-      {/* {errorMessage && <div className="">{errorMessage}</div>} */}
-    </section>
+    </div>
   );
 }
 

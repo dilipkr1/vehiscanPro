@@ -6,7 +6,7 @@ import Dashcopy from "../Dashcopy/Dashcopy";
 import Widget from "../../pages/Widget/Widget";
 import Featured from "../../pages/Featured/Featured";
 import Chart from "../../pages/Charts/Chart";
-import Datatable from "../../components/Datatable/Datatable";
+import Datatable from "../Datatable/Datatable";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";

@@ -14,8 +14,6 @@ const OrderTable = () => {
   const { customerData, setCustomerData } = useContext(CustomerContext);
   const [selectedRowId, setSelectedRowId] = useState(null);
 
- 
-
   const handleRowClick = (params) => {
     const selectedId = params.row.id;
     setSelectedRowId(selectedId);
@@ -26,9 +24,13 @@ const OrderTable = () => {
     setIsLoading(false);
   }, [orderData]);
 
-  if (!orderData || orderData.length === 0) {
+  if (!orderData || orderData.length === 0  || !packageData) {
     return <p>Loading...</p>;
   }
+
+
+
+  console.log(orderData);
 
   if (!Array.isArray(orderData.cartItems)) {
     console.error("Order data is not in the expected format:", orderData);
@@ -62,16 +64,17 @@ const OrderTable = () => {
     {
       field: "cartItems",
       headerName: "Product Details",
-      width: 250,
+      width: 130,
       renderCell: (params) => {
         const order = params.value;
+        console.log(order);
         if (!order || !Array.isArray(order)) {
           return "not an array";
         }
         return (
           <ul className="flex">
-            {order.map((cartItem, index) => (
-              <li key={index}>
+            {order.map((cartItem) => (
+              <li key={params.row.cartItems._id}>
                 {packageData.map((product) => {
                   if (product._id === cartItem.product_id) {
                     return (
@@ -88,7 +91,7 @@ const OrderTable = () => {
       },
     },
     {
-      field: "orderData",
+      field: "customerName",
       headerName: "Customer Name",
       width: 100,
       renderCell: (params) => {
@@ -96,7 +99,7 @@ const OrderTable = () => {
 
         return (
           <ul className="flex">
-            <li key={params.row.id}>
+            <li key={params.row.userId}>
               {customerData.map((customer) => {
                 if (customer.userId === params.row.userId) {
                   return (
@@ -136,7 +139,18 @@ const OrderTable = () => {
         );
       },
     },
-    // { field: "status", headerName: "Status", width: 150 },
+    {
+      field: "uid",
+      headerName: "UID",
+      width: 130,
+      renderCell: (params) => {
+        return (
+          <>
+            <p>{params.value}</p>
+          </>
+        );
+      },
+    },
   ];
 
   const actionColumn = [

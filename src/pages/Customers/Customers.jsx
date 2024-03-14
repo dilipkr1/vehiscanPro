@@ -1,7 +1,7 @@
 import "./customers.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import DashNav from "../DashNav/Dashnavbar";
-import Datatable from "../../components/Datatable/Datatable";
+import Datatable from "../Datatable/Datatable";
 import Dashcopy from "../Dashcopy/Dashcopy";
 
 const Customers = () => {

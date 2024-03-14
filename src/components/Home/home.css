@@ -19,4 +19,11 @@
       text-align: center;
     }
   }
+
+  @media (min-width: 700px) and (max-width: 1080px) {
+    
+    .customeBorder {
+      /* border-top-left-radius: 20px; */
+    }
+  }
 }

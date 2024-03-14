@@ -1,23 +1,33 @@
 import React from "react";
 import "./home.css";
+import heroImg from "../../images/hero.png";
+import fallback from "../../images/home1.png";
 
 export default function Home() {
   return (
-    <div className="flex lg:justify-start lg:px-20 lg:flex-row justify-center lg:text-left lg:items-start items-center customMobflexCol lg:my-25 lg:px-50 mx-8 my-20 font-roboto customTextalign">
-      <div className="flex lg:justify-start  flex-col items-end">
-        <img
-          className="lg:w-90 lg:pt-10"
-          src="/images/home1.png"
-          alt="home1_images"
-        />
+    <div className="lg:justify-start grid grid-cols-3 lg:px-20 lg:flex-row justify-center lg:text-left lg:items-center customMobflexCol lg:gap-8   font-roboto customTextalign">
+      <div className="flex lg:justify-end mt-20  flex-col items-center   lg:col-span-2">
+        <picture
+          style={{
+            marginTop: "20px",
+          }}
+          className="lg:w-70 lg:h-90 lg:pt-10 rounded-lg"
+        >
+          <source width="100%" media="(min-width: 200px)" srcset={heroImg} />
+          <source media="(max-width: 1300px)" srcset={heroImg} />
+          <img loading="lazy" src={fallback} alt="home1_images" />
+        </picture>
       </div>
 
-      <div className="lg:text-left lg:flex lg:flex-col lg:items-start text-right ">
-        <span className="lg:text-left customTextalign text-black-500 tracking-normal">
-          <span className="lg:text-xl">VehiConnect</span> - Now Connect with
+      <div
+        id="customerItem"
+        className="lg:text-left gap-2  lg:flex lg:flex-col lg:mt-20 lg:pt-10 lg:items-start  "
+      >
+        <span className="lg:text-left  align-baseline customTextalign font-bold tracking-wide text-logoClr">
+          <span className="lg:text-xl  customTextalign">VehiConnect</span> - Now Connect with
           Vehicle Owner.
         </span>
-        <h1 className="giveSpace customTextalign mt-2.5 mx-0 mb-5 lg:text-3xl  text-4xl font-roboto tracking-wide font-bold text-main font-700  lg:text-left  leading-7.2 ">
+        <h1 className="uppercase giveSpace customTextalign mt-2.5 mx-0 mb-3 lg:text-2xl  text3xl font-roboto tracking-wide font-bold text-main font-700  lg:text-left  leading-7.2 ">
           Let make you your Vehicle Safe when it parked
         </h1>
         <p className="giveSpace text-pgcolor customTextalign lg:text-left sm:text-base leading-30">
@@ -25,8 +35,8 @@ export default function Home() {
           contact you for any issues with your parked vehicle.
         </p>
 
-        <ul className="mt-10 mb-4 flex customMobflexCol  lg:flex-row justify-center items-center text-left lg:gap-4">
-          <li className="list-square rounded-md playStore flex justify-center items-center bg-black hover:bg-white hover:text-black text-white mb-4 text-sm">
+        <ul className="mt-3  mb-4 flex customMobflexCol  lg:flex-row justify-center items-center text-left lg:gap-4">
+          <li className="order-2 list-square rounded-md playStore flex justify-center items-center bg-black hover:bg-white hover:text-black text-white mb-4 text-sm">
             <a
               className="flex justify-center items-center py-2.5 px-5"
               href="#"
@@ -40,7 +50,7 @@ export default function Home() {
               </span>
             </a>
           </li>
-          <li className="list-square rounded-md playStore flex justify-center items-center bg-white hover:bg-black hover:text-white text-black mb-4 text-sm">
+          <li className="order-1 list-square rounded-md playStore flex justify-center items-center bg-white hover:bg-black hover:text-white text-black mb-4 text-sm">
             <a
               className="flex justify-center items-center py-2.5 px-5"
               href="#"

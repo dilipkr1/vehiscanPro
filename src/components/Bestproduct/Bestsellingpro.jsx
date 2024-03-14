@@ -13,60 +13,8 @@ export default function Bestsellingpro(props) {
           Get your Parking Tag, Business Card or Tag for Menu today.{" "}
         </p>
       </div>
-<div className="lg:flex-3 flex flex-wrap  justify-center lg:justify-start w-full items-center gap-7 lg:gap-0">
-
-
-      <Card
-        title="VehiClean Parking tags
-"
-        price="499"
-        description="30 Days Money back, Dedicated Support and lifelong service.
-
-"
-        f1=" Lifetime service
-"
-        f2=" WhatsApp, SMS and Masked Call
-"
-        f3=" Add multiple numbers
-"
-        f4=" Add Emergency contact
-"
-      />
-        <Card
-        title="Business Card
-"
-        price="599"
-        description="All Cards and features one price. Get more business with our Smart business card.
-
-
-
-"
-        f1=" Lifetime service
-"
-        f2=" WhatsApp, SMS and Masked Call
-"
-        f3=" Add multiple numbers
-"
-        f4=" Add Emergency contact
-"
-      />
-        <Card
-        title="Menu Tag
-"
-        price="1499"
-        description="We are giving away 2 years complete free to first 2000 Menu tags, try Now.
-
-
-"
-        f1=" Lifetime service
-"
-        f2=" WhatsApp, SMS and Masked Call
-"
-        f3=" Add multiple numbers
-"
-        f4=" Add Emergency contact
-"
-      />
+      <div className=" w-full items-center gap-7 lg:gap-0">
+        <Card />
       </div>
     </div>
   );

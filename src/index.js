@@ -10,24 +10,28 @@ import { TransactionProvider } from './context/transactonContext'
 import { PackageProvider } from './context/packageContext';
 import { CartProvider } from './context/cartContext'
 import { OrderProvider } from './context/OrderContext';
+import { FamilyContactProvider } from './context/phoneContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
     <AuthProvider>
-        <OrderProvider>
-            <CartProvider>
-                <PackageProvider>
-                    <TransactionProvider>
-                        <CustomerProvider>
-                            <SettingDataProvider>
+        <FamilyContactProvider>
+            <OrderProvider>
+                <CartProvider>
+                    <PackageProvider>
+                        <TransactionProvider>
+                            <CustomerProvider>
+                                <SettingDataProvider>
 
-                                <App />
+                                    <App />
 
-                            </SettingDataProvider>
-                        </CustomerProvider>
-                    </TransactionProvider>
-                </PackageProvider>
-            </CartProvider>
-        </OrderProvider>
+                                </SettingDataProvider>
+                            </CustomerProvider>
+                        </TransactionProvider>
+                    </PackageProvider>
+                </CartProvider>
+            </OrderProvider>
+        </FamilyContactProvider>
     </AuthProvider>
 );
 

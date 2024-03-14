@@ -21,8 +21,15 @@ const SingleRow = () => {
   const rowData = location.state.rowData;
   const order_id = rowData.orderId;
 
+  const handleChangeDispatch = (e) => {
+    const value = e.target.value;
+    console.log(value);
+    setUid(value);
+  };
+
   const handleStatusChange = async (e) => {
     const value = e.target.value;
+    console.log(value);
     setSelectedStatus(value);
     if (value === "Order Dispatched") {
       setUidInputVisible(true);
@@ -107,7 +114,6 @@ const SingleRow = () => {
                           Qty.. : {item.quantity}
                         </p>
                       </div>
-
                       <div>
                         <img
                           className="w-12 h-12 rounded"
@@ -143,8 +149,10 @@ const SingleRow = () => {
                 <TextField
                   label="UID of QR Code"
                   value={uid}
-                  onChange={(event) => setUid(event.target.value)}
+                  onChange={(e) => handleChangeDispatch(e)}
                 />
+
+                <button>save</button>
               </div>
             )}
             <Box sx={{ minWidth: 250 }}>

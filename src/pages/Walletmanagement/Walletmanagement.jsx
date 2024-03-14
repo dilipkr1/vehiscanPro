@@ -15,10 +15,7 @@ import { TransactionContext } from "../../context/transactonContext";
 function WalletManagement() {
 
   const navigate = useNavigate();
-  const { customerData } = useContext(CustomerContext);
-   
-
-
+  const { customerData } = useContext(CustomerContext); 
 
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [amount, setAmount] = useState("");
